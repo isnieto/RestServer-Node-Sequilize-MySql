@@ -25,9 +25,9 @@ db.player = require("./player.model.js")(sequelize, Sequelize);
 db.games = require("./game.model.js")(sequelize, Sequelize);
 
 db.player.hasMany(db.games, { as: "games" });
-/* db.comments.belongsTo(db.player, {
+db.games.belongsTo(db.player, {
   foreignKey: "playerId",
-  as: "playerId",
-}); */
+  as: "playerid",
+}); 
 
 module.exports = db;

@@ -1,10 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
-    const Player = sequelize.define("player", {
+    const Player = sequelize.define("players", {
       nickName: {
         type: Sequelize.STRING
       },
       registeredAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY 
       }
     });
   
