@@ -1,7 +1,10 @@
 const db = require("../models");
 const Player = db.player;
+const Game = db.game;
 const Op = db.Sequelize.Op;
 
+
+// Check if player name already in Database
 const checkIfPlayerExists = (playerName) => {
   return new Promise((reject, resolve) => {
     const name = playerName;
@@ -18,11 +21,13 @@ const checkIfPlayerExists = (playerName) => {
       .catch((err) => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving tutorials.",
+            err.message || "Some error occurred while retrieving data.",
         });
       });
   });
 };
+
+
 
 // Create and Save new player
 exports.createPlayer = async (req, res) => {
@@ -135,3 +140,4 @@ exports.updatePlayer = async (req, res) => {
       });
   }
 };
+

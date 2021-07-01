@@ -6,11 +6,13 @@ const { PORT } = require("./config/index.js");
 
 // Models
 const db = require("./models/index");
-/* db.sequelize.sync(); */
+db.sequelize.sync();
 
-db.sequelize.sync({ force: true }).then(() => {
+
+// Development purposes only. Drop database each time server is started
+/* db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
-});
+}); */
 
 // Routes
 require("./routes/game.routes.js")(app);

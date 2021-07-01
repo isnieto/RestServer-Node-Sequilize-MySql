@@ -17,10 +17,11 @@ module.exports = (app) => {
 
    // Modify player name
   router.put("/", playerController.updatePlayer);
-/*
-  // Play one Game
-  app.post("/players/:playerId/games/", playerController.playOneGame);
 
+  // Play one Game
+  router.post("/:playerId/games/", gameController.playOneGame);
+  
+  /*
   // Delete a Playger with playerId
   app.delete("/players/:playerId/games", playerController.deleteAll);
 

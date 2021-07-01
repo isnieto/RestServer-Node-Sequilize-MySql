@@ -1,38 +1,67 @@
 const db = require("../models");
-const Tutorial = db.games;
+const Player = db.player;
+const Game = db.games;
 const Op = db.Sequelize.Op;
-/* 
-// Create and Save a new Tutorial
-exports.create = (req, res) => {
-  
-};
 
-// Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
-  
-};
+const playGame = require("../middleware/game.play.js");
 
-// Find a single Tutorial with an id
-exports.findOne = (req, res) => {
-  
-};
 
-// Update a Tutorial by the id in the request
-exports.update = (req, res) => {
-  
-};
+// Check if player ID already in Database
+const checkIfPlayerIDExists = (playerId) => {
+    return new Promise((reject, resolve) => {
+      const condition = playerId ? { id: { [Op.like]: `%${playerId}%` } } : null;
+      Player.findAll({ where: condition })
+        .then((data) => {
+          //  if no data found resolve 
+          if (data.length === 0) {
+            resolve(true);
+          } else {
+            reject(false);
+          }
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while retrieving data.",
+          });
+        });
+    });
+  };
 
-// Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
+// Create and Save a new game
+exports.playOneGame =  async (req, res) => {
+    let playerIdExist = false;
+    playerIdExist = await checkIfPlayerIDExists(req.params.playerId).catch(
+      (e) => e
+    );
+    if (playerIdExist) {
+      res.status(400).json({ message: "Sorry, PlayerId is not correct. No such Id in Database" });
+    } else {
+      try {
+        let playerId = req.params.playerId;
+        let score = await playGame();
+        let result = (score > 7) ? true : false;
+        // Create a player
+      const game = {
+        result: score,
+        won: result,
+        playerId: playerId
+      };
+      // Save game in the database
+      Game.create(game)
+        .then((data) => {
+          let message = 'game played. Result: ' + score;
+          res.send({message: message});
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the player.",
+          });
+        });
   
-};
-
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-  
-};
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-  
-}; */
+      } catch (e) {
+        res.status(404).json({ error: e });
+      }
+    }
+  }
