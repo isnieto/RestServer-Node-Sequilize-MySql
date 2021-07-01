@@ -15,34 +15,34 @@ module.exports = (app) => {
   //Retrieve all players from database FALTA percentage mig
   router.get("/", playerController.findAll);
 
-   // Modify player name
+  // Modify player name
   router.put("/", playerController.updatePlayer);
 
   // Play one Game
   router.post("/:playerId/games/", gameController.playOneGame);
-  
-  /*
+
   // Delete a Playger with playerId
-  app.delete("/players/:playerId/games", playerController.deleteAll);
+  router.delete("/:playerId/games", gameController.deleteGames);
+  /*
 
 
 
   // Retrieve a single player score list
-  app.get("/players/:playerId/games", playerController.gamesAll);
+  router.get("/players/:playerId/games", playerController.gamesAll);
 
 
 
   // Retrieve average ranking of all  players
-  app.get("/players/ranking/all", playerController.findRanking);
+  router.get("/players/ranking/all", playerController.findRanking);
 
   // Retrieve worst player
-  app.get("/players/ranking/loser", playerController.findWorst);
+  router.get("/players/ranking/loser", playerController.findWorst);
 
   // Retrieve best player
-  app.get("/players/ranking/winner", playerController.findBest);
+  router.get("/players/ranking/winner", playerController.findBest);
  */
 
-  app.use('/players', router);
+  app.use("/players", router);
 
   // Page not available
   app.all("*", (req, res) => {

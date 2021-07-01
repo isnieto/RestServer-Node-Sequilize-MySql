@@ -79,7 +79,7 @@ exports.findPlayer = async (req, res) => {
   Player.findByPk(id)
     .then((data) => {
       if (!data)
-        return res.status(200).send({
+        return res.status(204).send({
           message: "No Player with id=" + id,
         });
       res.send(data);
@@ -97,7 +97,7 @@ exports.findAll = async (req, res) => {
     .then((data) => {
       console.log("Data", data.length);
       if (data.length === 0)
-        return res.status(200).send({
+        return res.status(204).send({
           message: "No Player in Database",
         });
       res.send(data);
