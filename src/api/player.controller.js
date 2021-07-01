@@ -2,6 +2,28 @@ const db = require("../models");
 const Player = db.player;
 const Op = db.Sequelize.Op;
 
+const checkIfPlayerExists = (playerName) => {
+  return new Promise((reject, resolve) => {
+    const name = playerName;
+    const condition = name ? { nickName: { [Op.like]: `%${name}%` } } : null;
+    Player.findAll({ where: condition })
+      .then((data) => {
+        //  if no data found resolve 
+        if (data.length === 0) {
+          resolve(true);
+        } else {
+          reject(false);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials.",
+        });
+      });
+  });
+};
+
 // Create and Save new player
 exports.createPlayer = async (req, res) => {
   let playerName = "";
@@ -17,24 +39,35 @@ exports.createPlayer = async (req, res) => {
   } else {
     playerName = req.body.name;
   }
-  // Create a player
-  const player = {
-    nickName: playerName,
-  };
-
-  // Save player in the database
-  Player.create(player)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the player.",
+  // Check if already Exist Name in Database
+  try {
+    // Check if playerid in database
+    let playerExist = false;
+    playerExist = await checkIfPlayerExists(playerName).catch((e) => e );
+    if (!playerExist) {
+      res.status(400).json({ message: "Sorry, Player already exists in database" });
+    } else {
+    // Create a player
+    const player = {
+      nickName: playerName,
+    };
+    // Save player in the database
+    Player.create(player)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while creating the player.",
+        });
       });
-    });
-};
 
+    }//else
+  } catch (e) {
+    res.status(500).json({ message: e });
+  }
+}
 // Retrieve a single player by ID
 exports.findPlayer = async (req, res) => {
   const id = req.params.playerId;
