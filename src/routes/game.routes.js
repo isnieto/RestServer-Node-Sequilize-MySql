@@ -23,23 +23,21 @@ module.exports = (app) => {
 
   // Delete a Playger with playerId
   router.delete("/:playerId/games", gameController.deleteGames);
+
+  // Retrieve best player
+  router.get("/ranking/winner", gameController.findWinner);
+
+  // Retrieve best player
+  router.get("/ranking/loser", gameController.findLoser);
+
   /*
-
-
-
   // Retrieve a single player score list
   router.get("/players/:playerId/games", playerController.gamesAll);
-
 
 
   // Retrieve average ranking of all  players
   router.get("/players/ranking/all", playerController.findRanking);
 
-  // Retrieve worst player
-  router.get("/players/ranking/loser", playerController.findWorst);
-
-  // Retrieve best player
-  router.get("/players/ranking/winner", playerController.findBest);
  */
 
   app.use("/players", router);
