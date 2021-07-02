@@ -40,7 +40,7 @@ To get the Node server running locally:
 ## Features
 
 In order to test routes with Postmann check following link:
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/633102c6253e58900cb5)
+[![Run in Postman](https://www.getpostman.com/collections/758f3b2f2c1b39d1409b)
 
 Methods Urls Actions
 
