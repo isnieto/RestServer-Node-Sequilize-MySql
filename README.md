@@ -26,19 +26,7 @@ To get the Node server running locally:
 
 ## Code style
 
-<div class="postman-run-button"
-data-postman-action="collection/fork"
-data-postman-var-1="15339443-72c9dd5b-1de4-4a67-8bff-1f62d6018335"
-data-postman-collection-url="entityId=15339443-72c9dd5b-1de4-4a67-8bff-1f62d6018335&entityType=collection"></div>
-<script type="text/javascript">
-  (function (p,o,s,t,m,a,n) {
-    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
-    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
-      (n = o.createElement("script")),
-      (n.id = s+t), (n.async = 1), (n.src = m), n
-    ));
-  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-</script>
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/15339443-72c9dd5b-1de4-4a67-8bff-1f62d6018335?action=collection%2Ffork&collection-url=entityId%3D15339443-72c9dd5b-1de4-4a67-8bff-1f62d6018335%26entityType%3Dcollection%26workspaceId%3Da6fa5b46-d7c5-4fc9-bcde-2e9c3d86fb5d)
 
 ## Tech/framework used
 
