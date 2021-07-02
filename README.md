@@ -26,7 +26,7 @@ To get the Node server running locally:
 
 ## Code style
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+Postmann --> https://www.getpostman.com/collections/758f3b2f2c1b39d1409b
 
 ## Tech/framework used
 
