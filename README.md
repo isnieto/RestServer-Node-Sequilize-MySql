@@ -34,6 +34,7 @@ To get the Node server running locally:
 
 - [Node](https://nodejs.org/es/)
 - [Express](https://expressjs.com/es/)
+- [ORM: Sequilize](https://sequelize.org/master/index.html)
 - [mysql2](https://github.com/expressjs/express)
 
 ## Features
