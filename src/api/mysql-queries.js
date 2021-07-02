@@ -1,20 +1,4 @@
 module.exports = {
-  createNewPlayer: (playerName) => {
-    return `INSERT INTO players (nickName, registeredAt) VALUES ( '${playerName}', CURDATE())`;
-  },
-
-  modifyPlayerName: (playerId, newName) => {
-    return `UPDATE players SET nickName = '${newName}' WHERE player_id = '${playerId}'`;
-  },
-
-  addNewGame: (playerId, result) => {
-    return `INSERT INTO games (round, result, player_id, won) VALUES ( NOW(), '${result}', '${playerId}', (CASE WHEN result >= 6 THEN 1 ELSE 0 END));`;
-  },
-
-  getOnePlayer: (playerId) => {
-    return `SELECT * FROM players WHERE player_id = ${playerId}`;
-  },
-
   getScorePlayer: (playerId) => {
     return `SELECT * FROM games WHERE player_id= ${playerId} ORDER BY round ASC`;
   },
