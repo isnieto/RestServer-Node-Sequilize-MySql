@@ -63,10 +63,12 @@ The project try to implement best practices following the following structure:
 </p>
 
 - `app.js` - The entry point to our application. This file defines our express server and connects it to MongoDB using mongoose. It also requires the routes and models we'll be using in the application.
-- `config/` - This folder contains configuration for passport as well as a central location for configuration/environment variables.
+- `api/` - This folder contains controller files.
+- `config/` - This folder contains configuration for database as well as a central location for configuration/environment variables.
+- `middleware/` - This folder contains middleware functions
 - `routes/` - This folder contains the route definitions for our API.
-- `models/` - This folder contains the schema definitions for our Mongoose models.
--
+- `models/` - This folder contains the schema definitions for our Mysql database models
+
 
 ## Related projects
 
