@@ -95,7 +95,6 @@ exports.findPlayer = async (req, res) => {
 exports.findAll = async (req, res) => {
   Player.findAll()
     .then((data) => {
-      console.log("Data", data.length);
       if (data.length === 0)
         return res.status(204).send({
           message: "No Player in Database",

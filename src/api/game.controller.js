@@ -74,18 +74,15 @@ exports.playOneGame = async (req, res) => {
 // Delete all games of one player
 exports.deleteGames = async (req, res) => {
   const id = req.params.playerId;
-  console.log("ID", id);
   Game.destroy({
     where: { playerId: id },
   })
     .then((result) => {
-      console.log("result", result);
       if (result !== 0) {
         res.status(200).send({
           message: "Player games were deleted successfully!",
         });
       } else {
-        console.log("Es", result);
         res.status(201).send({
           message: `Cannot delete Games with playerId=${id}. No Games available`,
         });
