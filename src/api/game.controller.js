@@ -5,7 +5,11 @@ const Game = db.games;
 const Op = db.Sequelize.Op;
 
 const playGame = require("../middleware/game.play.js");
-const { getBestRanking, getWorstRanking } = require("../api/mysql-queries.js");
+const {
+  getBestRanking,
+  getWorstRanking,
+  getRankigAll,
+} = require("../api/mysql-queries.js");
 
 // Check if player ID already in Database
 const checkIfPlayerIDExists = (playerId) => {
@@ -100,7 +104,7 @@ exports.findWinner = async (req, res) => {
     .query(getBestRanking)
     .then((data) => {
       if (data[0].length === 0)
-        res.status(201).send({ message: "No won games were found" });
+        res.status(204).send({ message: "No won games were found" });
       res.send(data[0]);
     })
     .catch((err) => {
@@ -117,8 +121,27 @@ exports.findLoser = async (req, res) => {
     .query(getWorstRanking)
     .then((data) => {
       if (data[0].length === 0)
-        res.status(201).send({ message: "No lost games were found" });
+        res.status(204).send({ message: "No lost games were found" });
       res.send(data[0]);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials.",
+      });
+    });
+};
+
+// Retrieve average ranking of all  players
+exports.findRanking = async (req, res) => {
+  db.sequelize
+    .query(getRankigAll)
+    .then((data) => {
+      if (data[0].length === 0) {
+        res.status(204).send({ message: "No games played were found" });
+      } else {
+        res.status(200).send(data[0]);
+      }
     })
     .catch((err) => {
       res.status(500).send({

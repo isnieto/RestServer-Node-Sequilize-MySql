@@ -30,16 +30,13 @@ module.exports = (app) => {
   // Retrieve best player
   router.get("/ranking/loser", gameController.findLoser);
 
-  /*
   // Retrieve a single player score list
-  router.get("/players/:playerId/games", playerController.gamesAll);
-
+  //router.get("/:playerId/games", gameController.gamesAll);
 
   // Retrieve average ranking of all  players
-  router.get("/players/ranking/all", playerController.findRanking);
+  router.get("/ranking/all", gameController.findRanking);
 
- */
-
+  // Router
   app.use("/players", router);
 
   // Page not available

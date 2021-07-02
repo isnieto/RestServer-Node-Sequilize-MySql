@@ -15,7 +15,7 @@ module.exports = {
 
   getRankigAll:
     "SELECT p.nickName, count(*) AS Games, CONCAT( ROUND(((sum(g.won) * 100) / count(*)), 0), '%')" +
-    " AS Percentage FROM games g LEFT JOIN players p ON g.player_id=p.player_Id GROUP BY g.player_id order by ((sum(won) * 100) / count(*)) DESC;",
+    " AS Percentage FROM games g LEFT JOIN players p ON g.playerId=p.id GROUP BY g.playerId order by ((sum(won) * 100) / count(*)) DESC;",
 
   getWorstRanking:
     "SELECT p.nickName, count(*) AS Games, CONCAT( ROUND(((sum(g.won) * 100) / count(*)), 0), '%')  as Percentage FROM games g LEFT JOIN players p " +
