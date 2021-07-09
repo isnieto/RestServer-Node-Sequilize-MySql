@@ -20,6 +20,7 @@ To get the Node server running locally:
 - Clone this repository
 - `npm install` o `npm i` to install all required dependencies
 - Create mysql database with script located in - `scripts/` folder.
+- Modify name of file `.env_template` to `.env`
 - `npm start` to start the local server.
 - API server can be tested with Postman. For routes see "Features".
 - Enviroment variables are place in .env_template for exercises purposes.
@@ -68,7 +69,6 @@ The project try to implement best practices following the following structure:
 - `middleware/` - This folder contains middleware functions
 - `routes/` - This folder contains the route definitions for our API.
 - `models/` - This folder contains the schema definitions for our Mysql database models
-
 
 ## Related projects
 
